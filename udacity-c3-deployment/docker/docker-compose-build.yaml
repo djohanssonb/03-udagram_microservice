@@ -10,9 +10,9 @@ services:
     image: 57192472048/udacity-restapi-user
   backend_feed:
     build:
-      context: ../../udacity-c3-restapi-feed  
+      context: ../../udacity-c3-restapi-feed
     image: 57192472048/udacity-restapi-feed
   frontend:
     build:
-      context: ../../udacity-c3-frontend  
+      context: ../../udacity-c3-frontend
     image: 57192472048/udacity-frontend
