@@ -6,11 +6,11 @@ language: minimal
 
 services: docker
 
-#env:
-#  - DOCKER_COMPOSE_VERSION=1.25.4
+env:
+  - DOCKER_COMPOSE_VERSION=1.25.4
 
-#before_install:
-#  - echo "BEFORE INSTALL START"
+before_install:
+  - echo "BEFORE INSTALL START"
 #  - gem install bundler
 #  - echo "BEFORE INSTALL END"
 #  - docker -v && docker-compose -v
