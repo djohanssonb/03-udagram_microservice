@@ -1,4 +1,4 @@
-language: ruby
+language: minimal
 
 services: docker
 
@@ -16,4 +16,4 @@ before_install:
   - sudo mv ./kubectl /usr/local/bin/kubectl
 
 install:
-  - echo 'hello udacity' 
+  - docker-compose -f udacity-c3-deployment/docker/docker-compose-build.yaml build --parallel 
