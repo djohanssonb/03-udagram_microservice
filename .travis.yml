@@ -17,6 +17,10 @@
     install: 
       - "docker-compose -f udacity-c3-deployment/docker/docker-compose-build.yaml build --parallel"
       - "docker-compose -f udacity-c3-deployment/docker/docker-compose-build.yaml push"
+      - "kubectl apply -f udacity-c3-deployment/k8s/backend-feed-deployment.yaml"
+      - "kubectl apply -f udacity-c3-deployment/k8s/backend-user-deployment.yaml"
+      - "kubectl apply -f udacity-c3-deployment/k8s/reverseproxy-deployment.yaml"
+      - "kubectl apply -f udacity-c3-deployment/k8s/frontend-deployment.yaml"
     language: minimal
     services: docker
     
