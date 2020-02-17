@@ -1,16 +1,33 @@
-# Udagram Image Filtering Microservice
+# Daniel Johansson Udagram Microservice
 
 Udagram is a simple cloud application developed alongside the Udacity Cloud Engineering Nanodegree. It allows users to register and log into a web client, post photos to the feed, and process photos using an image filtering microservice.
 
 The project is split into three parts:
 1. [The Simple Frontend](/udacity-c3-frontend)
 A basic Ionic client web application which consumes the RestAPI Backend. 
+2. [The resetAPI reverse proxy], an nginx reverse proxy that dispatches requests to feed & user services
 2. [The RestAPI Feed Backend](/udacity-c3-restapi-feed), a Node-Express feed microservice.
 3. [The RestAPI User Backend](/udacity-c3-restapi-user), a Node-Express user microservice.
 
-## Getting Setup
+## Steps that have been made
+1. Install Travis plugin to github
+2. Create Postgres DB in AWS and open up VPC for remote access (for testing)
+3. Create S3 bucket and enable CORS
+4. Build Frontend and Backend services and push to docker hub (with ionic build, npm run build and finally the comtainer iwth docker build)
+5. Run images locally with: docker-compose up
+6. Create EKS cluster and config: aws eks --region eu-north-1 update-kubeconfig --name <cluster name>
+7. Check EKS config: "kubectl config view" and test connection: "kubectl get svc"
+8. Apply AWS secrets
+9. Deploy images to cluster: kubectl apply -f "config deploy yaml"
+10. List pods and images; kubectl get pod  AND  kubectl get svc
+11. Debug: kubectl describe pod "podname" kubectl logs "podname"
+12. Expose frontend to internet from cluster: kubectl expose deployment frontend --type=LoadBalancer --name=internet
+13. Add rolling update
+kubectl set image deployments/backend-feed backend-feed=57192472048/udacity-restapi-feed:v2
+kubectl set image deployments/backend-user backend-user=57192472048/udacity-restapi-user:v2
+kubectl set image deployments/frontend frontend=57192472048/udacity-frontend:v2
+kubectl set image deployments/reverseproxy reverseproxy=57192472048/reverseproxy
 
-> _tip_: this frontend is designed to work with the RestAPI backends). It is recommended you stand up the backend first, test using Postman, and then the frontend should integrate.
 
 ### Installing Node and NPM
 This project depends on Nodejs and Node Package Manager (NPM). Before continuing, you must download and install Node (NPM is included) from [https://nodejs.com/en/download](https://nodejs.org/en/download/).
